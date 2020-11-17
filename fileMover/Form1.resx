@@ -117,4 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label8.Text" xml:space="preserve">
+    <value>About: This application Take files from your downloads folder and moves them to the desktop 
+it will then put each file into the folder specified above, it moves files based on extension so
+All mp3 will go to the audio location etc,
+Bug ? Pease report  on github : 
+https://github.com/kapatchie/fileMover-UI/issues</value>
+  </data>
 </root>

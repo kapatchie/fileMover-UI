@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.chkBoxAudio = new System.Windows.Forms.CheckBox();
             this.chkBoxVideo = new System.Windows.Forms.CheckBox();
@@ -47,6 +48,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkBoxLocation = new System.Windows.Forms.CheckBox();
             this.btnDone = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -222,11 +225,31 @@
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(392, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Location";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 256);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(448, 65);
+            this.label8.TabIndex = 20;
+            this.label8.Text = resources.GetString("label8.Text");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(500, 339);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.chkBoxLocation);
             this.Controls.Add(this.label3);
@@ -275,6 +298,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox chkBoxLocation;
         private System.Windows.Forms.Button btnDone;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 
