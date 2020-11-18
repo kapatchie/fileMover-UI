@@ -19,13 +19,13 @@ namespace ConsoleUI
 
                 return true;
             }
-            else if (!Directory.Exists(path))
+            else if (Directory.Exists(path))
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
@@ -59,12 +59,16 @@ namespace ConsoleUI
         {
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Data");
             string fileDestinationPath = path + @"\fileRespsitories.txt";
+            checkDestination(true, path);
+
             StringBuilder sb = new StringBuilder();
             StreamWriter sw;
 
+            File.WriteAllText(fileDestinationPath, "");
             try
             {
                 sw = new StreamWriter(fileDestinationPath, false, Encoding.UTF8);
+
                 foreach (var repository in repositories)
                 {
                     sb.Append("Destination =").Append(repository.Destination).Append(',');
@@ -76,7 +80,7 @@ namespace ConsoleUI
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                UIController.Instance.text = Environment.NewLine + e;
             }
             finally
             {
@@ -130,7 +134,6 @@ namespace ConsoleUI
             }
             catch (Exception e)
             {
-                UIController.Instance.text = Environment.NewLine + e;
                 return dataList;
             }
         }

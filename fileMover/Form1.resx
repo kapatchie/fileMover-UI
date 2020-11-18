@@ -124,4 +124,7 @@ All mp3 will go to the audio location etc,
 Bug ? Pease report  on github : 
 https://github.com/kapatchie/fileMover-UI/issues</value>
   </data>
+  <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

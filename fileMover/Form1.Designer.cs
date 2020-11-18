@@ -50,6 +50,9 @@
             this.btnDone = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -64,57 +67,52 @@
             // chkBoxAudio
             // 
             this.chkBoxAudio.AutoSize = true;
-            this.chkBoxAudio.Location = new System.Drawing.Point(13, 30);
+            this.chkBoxAudio.Location = new System.Drawing.Point(6, 24);
             this.chkBoxAudio.Name = "chkBoxAudio";
             this.chkBoxAudio.Size = new System.Drawing.Size(53, 17);
             this.chkBoxAudio.TabIndex = 1;
             this.chkBoxAudio.Text = "Audio";
             this.chkBoxAudio.UseVisualStyleBackColor = true;
-            this.chkBoxAudio.CheckedChanged += new System.EventHandler(this.chkBoxAudio_CheckedChanged);
             // 
             // chkBoxVideo
             // 
             this.chkBoxVideo.AutoSize = true;
-            this.chkBoxVideo.Location = new System.Drawing.Point(13, 54);
+            this.chkBoxVideo.Location = new System.Drawing.Point(6, 44);
             this.chkBoxVideo.Name = "chkBoxVideo";
             this.chkBoxVideo.Size = new System.Drawing.Size(53, 17);
             this.chkBoxVideo.TabIndex = 2;
             this.chkBoxVideo.Text = "Video";
             this.chkBoxVideo.UseVisualStyleBackColor = true;
-            this.chkBoxVideo.CheckedChanged += new System.EventHandler(this.chkBoxVideo_CheckedChanged);
             // 
             // chkBoxExecutable
             // 
             this.chkBoxExecutable.AutoSize = true;
-            this.chkBoxExecutable.Location = new System.Drawing.Point(13, 78);
+            this.chkBoxExecutable.Location = new System.Drawing.Point(6, 67);
             this.chkBoxExecutable.Name = "chkBoxExecutable";
             this.chkBoxExecutable.Size = new System.Drawing.Size(79, 17);
             this.chkBoxExecutable.TabIndex = 3;
             this.chkBoxExecutable.Text = "Executable";
             this.chkBoxExecutable.UseVisualStyleBackColor = true;
-            this.chkBoxExecutable.CheckedChanged += new System.EventHandler(this.chkBoxExecutable_CheckedChanged);
             // 
             // chkBoxCompressed
             // 
             this.chkBoxCompressed.AutoSize = true;
-            this.chkBoxCompressed.Location = new System.Drawing.Point(13, 102);
+            this.chkBoxCompressed.Location = new System.Drawing.Point(6, 87);
             this.chkBoxCompressed.Name = "chkBoxCompressed";
             this.chkBoxCompressed.Size = new System.Drawing.Size(84, 17);
             this.chkBoxCompressed.TabIndex = 4;
             this.chkBoxCompressed.Text = "Compressed";
             this.chkBoxCompressed.UseVisualStyleBackColor = true;
-            this.chkBoxCompressed.CheckedChanged += new System.EventHandler(this.chkBoxCompressed_CheckedChanged);
             // 
             // chkBoxImage
             // 
             this.chkBoxImage.AutoSize = true;
-            this.chkBoxImage.Location = new System.Drawing.Point(13, 126);
+            this.chkBoxImage.Location = new System.Drawing.Point(6, 110);
             this.chkBoxImage.Name = "chkBoxImage";
             this.chkBoxImage.Size = new System.Drawing.Size(55, 17);
             this.chkBoxImage.TabIndex = 5;
             this.chkBoxImage.Text = "Image";
             this.chkBoxImage.UseVisualStyleBackColor = true;
-            this.chkBoxImage.CheckedChanged += new System.EventHandler(this.chkBoxImage_CheckedChanged);
             // 
             // textBoxAudio
             // 
@@ -213,7 +211,6 @@
             this.chkBoxLocation.Size = new System.Drawing.Size(15, 14);
             this.chkBoxLocation.TabIndex = 17;
             this.chkBoxLocation.UseVisualStyleBackColor = true;
-            this.chkBoxLocation.CheckedChanged += new System.EventHandler(this.chkBoxLocation_CheckedChanged);
             // 
             // btnDone
             // 
@@ -243,11 +240,28 @@
             this.label8.TabIndex = 20;
             this.label8.Text = resources.GetString("label8.Text");
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkBoxVideo);
+            this.groupBox1.Controls.Add(this.chkBoxExecutable);
+            this.groupBox1.Controls.Add(this.chkBoxCompressed);
+            this.groupBox1.Controls.Add(this.chkBoxImage);
+            this.groupBox1.Controls.Add(this.chkBoxAudio);
+            this.groupBox1.Location = new System.Drawing.Point(16, 30);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 135);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            // 
+            // folderBrowserDialog1
+            // 
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 339);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnDone);
@@ -263,15 +277,12 @@
             this.Controls.Add(this.Video);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxAudio);
-            this.Controls.Add(this.chkBoxImage);
-            this.Controls.Add(this.chkBoxCompressed);
-            this.Controls.Add(this.chkBoxExecutable);
-            this.Controls.Add(this.chkBoxVideo);
-            this.Controls.Add(this.chkBoxAudio);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,6 +311,8 @@
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
 
