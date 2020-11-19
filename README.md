@@ -2,14 +2,18 @@
 The Goal of this application is to make sorting your downloads file easier by moving Files based on their extension to a specified folder on your desktop, 
 
 
-Select a CheckBox of the type of file more than one can be chosen, at the location type in the folder you want to move that type of file to Example\Example in this format 
+Select a CheckBox of the type of file more than one can be chosen,
+When choosing a location use the format Myfolder\MySubfolder 
+The folder will be created on your desktop provided that the relevant checkbox is ticked.
 
-At this point there is no output,
+
+Output is dispayed in a messagebox for now.
+Saving and loading is implimented, previously selected locations are filled in and ticked
+
 
 Next Update will Include :
-Filling in of locations that have been previously selected,
-An easier way of selecting the folder
-Output (problably a message box for now )
+An easier way of selecting the folder(WIP)
+Better Display for output 
 
 If you have any Suggestions or feedback feel free to List them on the issues tab same with bugs 
 
