@@ -1,15 +1,15 @@
-﻿namespace ConsoleUI
+﻿
+using System.Collections.Generic;
+
+namespace ConsoleUI
 {
     public sealed class UIController
     {
         private static readonly UIController instance = new UIController();
 
-        static UIController()
+       static  UIController()
         {
-        }
-        private UIController()
-        {
-        }
+        }       
         public static UIController Instance
         {
             get

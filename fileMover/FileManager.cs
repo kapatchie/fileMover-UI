@@ -33,9 +33,9 @@ namespace ConsoleUI
         {
             return Directory.GetFiles(rootPath, $"*.{Extension}");
         }
-        private static void MoveFile(string newLocation, string Extension, string rootPath, string Destination)
+        private static void MoveFile(string newLocation, string Extension, string rootPath)
         {
-            newLocation = Path.Combine(Destination, newLocation);
+           
 
             foreach (var file in GetFilesToMove(rootPath, Extension))
             {
@@ -44,10 +44,10 @@ namespace ConsoleUI
                 if (!File.Exists(newFileName))
                 {
                     File.Move(file, newFileName);
-                    UIController.Instance.text += ("Moving File " + Path.GetFileName(file) + Environment.NewLine);
+                    UIController.Instance.text += ("Moving File " + Path.GetFileName(file) + "*");
                 }
                 else
-                { UIController.Instance.text += ($"File :{ Path.GetFileName(file)} all ready exists skipping file " + Environment.NewLine); }
+                { UIController.Instance.text += ($"File :{ Path.GetFileName(file)} all ready exists skipping file" + "*"); }
             }
         }
 
@@ -80,7 +80,7 @@ namespace ConsoleUI
             }
             catch (Exception e)
             {
-                UIController.Instance.text = Environment.NewLine + e;
+                UIController.Instance.text += (e + "*");
             }
             finally
             {
@@ -137,22 +137,19 @@ namespace ConsoleUI
                 return dataList;
             }
         }
-        public static void MoveFiles(List<Repository> fileRepository, bool createLocation)
+        public static void MoveFiles(List<Repository> fileRepository, bool createLocation,string rootPath)
         {
-            string Destination = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
-
             foreach (var repository in fileRepository)
             {
                 List<string> _extensions = new List<string>();
                 FileData fileData = new FileData(repository.Type);
                 _extensions.AddRange(fileData.fileExtensions);
-                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), repository.Destination);
-                if (FileManager.checkDestination(createLocation, path))
+
+                if (checkDestination(false, rootPath))
                 {
                     foreach (var extension in _extensions)
                     {
-                        MoveFile(repository.Destination, extension, rootPath, Destination);
+                        MoveFile(repository.Destination, extension, rootPath);
                     }
                 }
             }

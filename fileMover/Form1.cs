@@ -1,6 +1,7 @@
 ﻿using ConsoleUI;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Contexts;
 using System.Windows.Forms;
 
 
@@ -13,6 +14,7 @@ namespace fileMover
         {
             InitializeComponent();
             fileRepositories.AddRange(FileManager.loadData());
+            txtBoxStartLocation.Text = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads";
             foreach (var repository in fileRepositories)
             {
                 switch (repository.Type)
@@ -40,6 +42,9 @@ namespace fileMover
                 }
             }
             fileRepositories.Clear();
+            listView1.View = View.Details;
+            listView1.Columns.Add("Files Moved", -2);
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -69,9 +74,65 @@ namespace fileMover
                 fileRepositories.Add(new Repository(textBoxImage.Text, 5));
             }
 
-            FileManager.MoveFiles(fileRepositories, chkBoxLocation.Checked);
-            MessageBox.Show(UIController.Instance.text);
+            FileManager.MoveFiles(fileRepositories, chkBoxLocation.Checked,txtBoxStartLocation.Text);
+            UpdateUI();
             FileManager.saveData(fileRepositories);
+        }
+
+        public void UpdateUI()
+        {
+            List<string> OutputData = new List<string>();
+            OutputData.AddRange(UIController.Instance.text.Split('*'));
+            foreach (var output in OutputData)
+            {
+                listView1.Items.Add(output);
+            }
+        }
+
+        private void btnAudioBrowse_Click(object sender, EventArgs e)
+        {
+            fd.ShowDialog();
+            textBoxAudio.Text = fd.SelectedPath;
+        }
+
+        private void btnVideoBrowse_Click(object sender, EventArgs e)
+        {
+            fd.ShowDialog();
+            textBoxVideo.Text = fd.SelectedPath;
+        }
+
+        private void btnExecutableBrowse_Click(object sender, EventArgs e)
+        {
+            fd.ShowDialog();
+            textBoxExecutable.Text = fd.SelectedPath;
+        }
+
+        private void btnCompressedBrowse_Click(object sender, EventArgs e)
+        {
+            fd.ShowDialog();
+            textBoxCompressed.Text = fd.SelectedPath;
+        }
+
+        private void btnImageBrowse_Click(object sender, EventArgs e)
+        {
+            fd.ShowDialog();
+            textBoxImage.Text = fd.SelectedPath;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           const string message =
+                "This application Take files from your downloads folder and moves them to the desktop" +
+                "it will then put each file into the folder specified above, it moves files based on extension so" +
+                "All mp3 will go to the audio location etc," + @"Bug? Pease report on github:\n\r" + 
+                "https://github.com/kapatchie/fileMover-UI/issues;";
+            MessageBox.Show(message);
+        }
+
+        private void btnStartBrowse_Click(object sender, EventArgs e)
+        {
+            fd.ShowDialog();
+            txtBoxStartLocation.Text = fd.SelectedPath;
         }
     }
 }
