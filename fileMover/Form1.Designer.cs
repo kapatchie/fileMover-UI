@@ -205,7 +205,7 @@
             // chkBoxLocation
             // 
             this.chkBoxLocation.AutoSize = true;
-            this.chkBoxLocation.Location = new System.Drawing.Point(198, 183);
+            this.chkBoxLocation.Location = new System.Drawing.Point(200, 184);
             this.chkBoxLocation.Name = "chkBoxLocation";
             this.chkBoxLocation.Size = new System.Drawing.Size(15, 14);
             this.chkBoxLocation.TabIndex = 17;
@@ -277,7 +277,7 @@
             // 
             // btnImageBrowse
             // 
-            this.btnImageBrowse.Location = new System.Drawing.Point(274, 113);
+            this.btnImageBrowse.Location = new System.Drawing.Point(274, 117);
             this.btnImageBrowse.Name = "btnImageBrowse";
             this.btnImageBrowse.Size = new System.Drawing.Size(75, 20);
             this.btnImageBrowse.TabIndex = 26;
@@ -321,8 +321,10 @@
             // 
             // listView1
             // 
+            this.listView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.listView1.GridLines = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 245);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(570, 214);

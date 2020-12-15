@@ -8,6 +8,7 @@ namespace ConsoleUI
 {
     static class FileManager
     {
+        public static List<string> wordsToDelete = new List<string>();
         public static bool checkDestination(bool createDestination, string path)
         {
             if (createDestination)
@@ -35,11 +36,9 @@ namespace ConsoleUI
         }
         private static void MoveFile(string newLocation, string Extension, string rootPath)
         {
-           
-
             foreach (var file in GetFilesToMove(rootPath, Extension))
             {
-                string newFileName = UnwantedTextRemover(Path.GetFileName(file), "y2mate.com - ");
+                string newFileName = UnwantedTextRemover(Path.GetFileName(file));
                 newFileName = Path.Combine(newLocation, newFileName);
                 if (!File.Exists(newFileName))
                 {
@@ -51,9 +50,13 @@ namespace ConsoleUI
             }
         }
 
-        private static string UnwantedTextRemover(string text, string unwanted)
+        private static string UnwantedTextRemover(string text)
         {
-            return text.Contains(unwanted) ? text.Replace(unwanted, "") : text;
+            foreach (var unwanted in wordsToDelete)
+            {
+                text = text.Contains(unwanted) ? text.Replace(unwanted, "") : text;
+            }
+            return text;
         }
         public static void saveData(List<Repository> repositories)
         {
@@ -137,7 +140,7 @@ namespace ConsoleUI
                 return dataList;
             }
         }
-        public static void MoveFiles(List<Repository> fileRepository, bool createLocation,string rootPath)
+        public static void MoveFiles(List<Repository> fileRepository, bool createLocation, string rootPath)
         {
             foreach (var repository in fileRepository)
             {

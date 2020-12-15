@@ -15,6 +15,5 @@
             Destination = "";
             Type = 0;
         }
-
     }
 }

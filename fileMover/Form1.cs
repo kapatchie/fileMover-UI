@@ -1,7 +1,6 @@
 ﻿using ConsoleUI;
 using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Contexts;
 using System.Windows.Forms;
 
 
@@ -44,7 +43,7 @@ namespace fileMover
             fileRepositories.Clear();
             listView1.View = View.Details;
             listView1.Columns.Add("Files Moved", -2);
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -73,8 +72,8 @@ namespace fileMover
             {
                 fileRepositories.Add(new Repository(textBoxImage.Text, 5));
             }
-
-            FileManager.MoveFiles(fileRepositories, chkBoxLocation.Checked,txtBoxStartLocation.Text);
+            FileManager.wordsToDelete.Add("y2mate -");
+            FileManager.MoveFiles(fileRepositories, chkBoxLocation.Checked, txtBoxStartLocation.Text);
             UpdateUI();
             FileManager.saveData(fileRepositories);
         }
@@ -82,10 +81,14 @@ namespace fileMover
         public void UpdateUI()
         {
             List<string> OutputData = new List<string>();
-            OutputData.AddRange(UIController.Instance.text.Split('*'));
-            foreach (var output in OutputData)
+            if (UIController.Instance.text != null)
             {
-                listView1.Items.Add(output);
+                OutputData.AddRange(UIController.Instance.text.Split('*'));
+                UIController.Instance.text = "";
+                foreach (var output in OutputData)
+                {
+                    listView1.Items.Add(output);
+                }
             }
         }
 
@@ -121,11 +124,11 @@ namespace fileMover
 
         private void button1_Click(object sender, EventArgs e)
         {
-           const string message =
-                "This application Take files from your downloads folder and moves them to the desktop" +
-                "it will then put each file into the folder specified above, it moves files based on extension so" +
-                "All mp3 will go to the audio location etc," + @"Bug? Pease report on github:\n\r" + 
-                "https://github.com/kapatchie/fileMover-UI/issues;";
+            const string message =
+                 "This application Take files from your downloads folder and moves them to the desktop" +
+                 "it will then put each file into the folder specified above, it moves files based on extension so" +
+                 "All mp3 will go to the audio location etc," + @"Bug? Pease report on github:\n\r" +
+                 "https://github.com/kapatchie/fileMover-UI/issues;";
             MessageBox.Show(message);
         }
 
