@@ -18,7 +18,7 @@ Saving and loading is implimented, previously selected locations are filled in a
 Next Update will Include :
 Removing Unwanted File names from all Files that are to be moved, (Also included when loading)
 
-If you have any Suggestions or feedback feel free to List them on the issues tab same with bugs 
+If you have any Suggestions or feedback feel free to List them on the issues tab or drop me an email at pikechristheunissen@gmail.com
 
 Thank you so much for taking the time to look at my Repository 
 
