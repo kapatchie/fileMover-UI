@@ -13,23 +13,11 @@ namespace ConsoleUI
         {
             if (createDestination)
             {
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-
+                Directory.CreateDirectory(path);
                 return true;
             }
-            else if (Directory.Exists(path))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Directory.Exists(path);
         }
-
         private static string[] GetFilesToMove(string rootPath, string Extension)
         {
             return Directory.GetFiles(rootPath, $"*.{Extension}");
@@ -42,8 +30,24 @@ namespace ConsoleUI
                 newFileName = Path.Combine(newLocation, newFileName);
                 if (!File.Exists(newFileName))
                 {
-                    File.Move(file, newFileName);
-                    UIController.Instance.text += ("Moving File " + Path.GetFileName(file) + "*");
+                    try
+                    {
+                        File.Move(file, newFileName);
+                        UIController.Instance.text += ("Moving File " + Path.GetFileName(file) + "*");
+                    }
+                    catch (IOException ex)
+                    {
+                        UIController.Instance.text += $"IO Error: {ex.Message}";
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        UIController.Instance.text += "Error: Access Denied.";
+                    }
+                    catch (Exception ex)
+                    {
+                        UIController.Instance.text += $"Unexpected Error: {ex.Message}";
+                    }
+
                 }
                 else
                 { UIController.Instance.text += ($"File :{ Path.GetFileName(file)} all ready exists skipping file" + "*"); }
@@ -61,7 +65,7 @@ namespace ConsoleUI
         public static void saveData(List<Repository> repositories)
         {
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Data");
-            string fileDestinationPath = path + @"\fileRespsitories.txt";
+            string fileDestinationPath = Path.Combine( path + @"\fileRespsitories.txt");
             checkDestination(true, path);
 
             StringBuilder sb = new StringBuilder();
