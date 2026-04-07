@@ -11,12 +11,7 @@ namespace ConsoleUI
         public static List<string> wordsToDelete = new List<string>();
         public static bool checkDestination(bool createDestination, string path)
         {
-            if (createDestination)
-            {
                 Directory.CreateDirectory(path);
-                return true;
-            }
-            return Directory.Exists(path);
         }
         private static string[] GetFilesToMove(string rootPath, string Extension)
         {
@@ -56,11 +51,14 @@ namespace ConsoleUI
 
         private static string UnwantedTextRemover(string text)
         {
+            if (string.IsNullOrWhiteSpace(text)) return text;
+
             foreach (var unwanted in wordsToDelete)
             {
-                text = text.Contains(unwanted) ? text.Replace(unwanted, "") : text;
+                if (string.IsNullOrEmpty(unwanted)) continue; 
+                text = text.Replace(unwanted, string.Empty,StringComparison.OrdinalIgnoreCase);
             }
-            return text;
+            return text.Replace("  ", " ").Trim();
         }
         public static void saveData(List<Repository> repositories)
         {
