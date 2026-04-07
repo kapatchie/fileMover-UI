@@ -1,25 +1,59 @@
-# fileMover-UI
+fileMover-UI is a lightweight desktop utility designed to automate the organization of cluttered folders—specifically. By sorting files based on their extensions into user-defined repositories, it turns a chaotic list of files into a structured system in a single click.
 
-V0.3 UI Update and Quality of Life Changes
-(Please Delete the fileRepositories.txt file located in the Data folder if upgrading from an older version)
+✨ Features
+Smart Sorting: Group files by type (Images, Documents, Installers, etc.) into dedicated folders.
 
-The Goal of this application is to make sorting  files easier by moving Files based on their extension to a specified folder, 
+Filename Cleanup: Automatically remove "junk" text from filenames (e.g., (1), [Official], _v2) during the move process.
+
+Persistence: Saves your folder configurations and cleanup rules so you only have to set them up once.
+
+Safety First: Includes checks to ensure files aren't overwritten and provides clear error logging for access-denied issues.
+
+Automatic Directory Creation: Toggles to create destination folders automatically if they don't exist.
+
+🚀 Getting Started
+Prerequisites
+Windows 10 or 11
+
+.NET Runtime (Version 5.0 or higher recommended)
+
+Installation
+Download the latest release from the Releases tab.
+
+Extract the .zip file to a location of your choice.
+
+Run fileMover.exe.
+
+[!IMPORTANT]
+Upgrading from v0.2? > Please delete the fileRepositories.txt file located in the /Data folder before launching the new version to ensure compatibility with the updated save system.
+
+🛠 Usage
+Select Source: Define the "Root Path" (e.g., your Downloads folder).
+
+Configure Repositories: Use the checkboxes to select which file types you want to move and browse for their destination folders.
+
+Clean Filenames: Add "Unwanted Words" in the UI settings. Any file being moved that contains these words will have them stripped from the name automatically.
+
+Run: Click the move button and watch the live log populate as your files are organized.
+
+🗺 Roadmap
+[x] Basic file moving by extension
+
+[x] UI-based configuration saving/loading
+
+[x] Case-insensitive filename cleanup
+
+[ ] Upcoming: JSON-based configuration for better stability
+
+[ ] Upcoming: Regex support for advanced filename cleaning
+
+[ ] Upcoming: "Undo" functionality to revert the last move operation
 
 
-Select a CheckBox of the type of file more than one can be chosen,
-When choosing a location please select the Browse Button next to the type of file or the Full path can be entered 
-The folder will be created provided that the relevant checkbox is ticked.
+📄 License
+Distributed under the MIT License. See LICENSE for more information.
 
+📧 Contact
+Pike Theunissen - pikechristheunissen@gmail.com
 
-Files that are moved are displayed in UI, 
-Saving and loading is implimented, previously selected locations are filled in and ticked
-
-
-Next Update will Include :
-Removing Unwanted File names from all Files that are to be moved, (Also included when loading)
-
-If you have any Suggestions or feedback feel free to List them on the issues tab or drop me an email at pikechristheunissen@gmail.com
-
-Thank you so much for taking the time to look at my Repository 
-
-Pike
+Project Link: https://github.com/PikeTheunissen/fileMover-UI
