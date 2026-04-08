@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ConsoleUI
 {
     static class FileManager
     {
         public static List<string> wordsToDelete = new List<string>();
-        public static bool checkDestination(bool createDestination, string path)
+        public static bool CheckDestination(bool createDestination, string path)
         {
-                Directory.CreateDirectory(path);
+            if (!createDestination)
+            {
+                return (Directory.Exists(path));
+            }
+            
+            Directory.CreateDirectory(path);
+            return true;
         }
         private static string[] GetFilesToMove(string rootPath, string Extension)
         {
@@ -55,16 +62,18 @@ namespace ConsoleUI
 
             foreach (var unwanted in wordsToDelete)
             {
-                if (string.IsNullOrEmpty(unwanted)) continue; 
-                text = text.Replace(unwanted, string.Empty,StringComparison.OrdinalIgnoreCase);
+                if (string.IsNullOrEmpty(unwanted)) continue;
+                text = Regex.Replace(text, Regex.Escape(unwanted),string.Empty,RegexOptions.IgnoreCase);
             }
-            return text.Replace("  ", " ").Trim();
+            text = Regex.Replace(text,@"\s+", " ").Trim();
+
+            return text;
         }
         public static void saveData(List<Repository> repositories)
         {
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Data");
             string fileDestinationPath = Path.Combine( path + @"\fileRespsitories.txt");
-            checkDestination(true, path);
+            CheckDestination(true, path);
 
             StringBuilder sb = new StringBuilder();
             StreamWriter sw;
@@ -133,7 +142,7 @@ namespace ConsoleUI
                 foreach (var file in dataList)
                 {
                     string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), file.Destination);
-                    checkDestination(true, _path);
+                    CheckDestination(true, _path);
                 }
                 return dataList;
             }
@@ -150,7 +159,7 @@ namespace ConsoleUI
                 FileData fileData = new FileData(repository.Type);
                 _extensions.AddRange(fileData.fileExtensions);
 
-                if (checkDestination(false, rootPath))
+                if (CheckDestination(false, rootPath))
                 {
                     foreach (var extension in _extensions)
                     {
